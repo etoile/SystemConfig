@@ -24,7 +24,7 @@ SystemConfig_HEADER_FILES = \
 	SCSound.h
 
 ifeq ($(ETOILE_X11), yes)
-SystemConfig_LIBRARIES_DEPEND_UPON += -lX11
+SystemConfig_LIBRARIES_DEPEND_UPON += -lX11 $(FND_LIBS) $(OBJC_LIBS) $(SYSTEM_LIBS) 
 SystemConfig_HEADER_FILES += X11Keyboard.h
 endif
 
