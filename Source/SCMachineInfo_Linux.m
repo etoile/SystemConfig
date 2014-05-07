@@ -70,7 +70,7 @@ my_round (float x)
 	{
 		NSArray * comps = [line componentsSeparatedByString: @":"];
 		NSString *memSize = [comps objectAtIndex:1];
-		return [memSize intValue] * 1024;
+		return [memSize intValue];
 	}
 	  
 	return 0; 

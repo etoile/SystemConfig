@@ -66,7 +66,7 @@ static NSString *
 humanReadableNumber (double value, unsigned int unitScale, NSString *unit,
                      int maxRoundedPrefix)
 {
-  int prefix = -1;
+  int prefix = 0;
   // Divide by the size of a prefix interval until we have a value
   // smaller than the prefix interval
 
