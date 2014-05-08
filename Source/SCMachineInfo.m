@@ -183,7 +183,7 @@ humanReadableNumber (double value, unsigned int unitScale, NSString *unit,
   if ([self platformSupported])
     {
       // Reformat the MHz speed
-      return humanReadableNumber ((double) [self cpuMHzSpeed] * 1000000, 1000,
+      return humanReadableNumber ((double) [self cpuMHzSpeed] * 1000, 1000,
                                   @"Hz", 1);
     }
   else
