@@ -79,42 +79,8 @@ my_round (float x)
 + (unsigned int) cpuMHzSpeed
 {
   // read /proc/cpuinfo for the processor type
-  NSEnumerator * e = [[[NSString stringWithContentsOfFile: @"/proc/cpuinfo"]
-    componentsSeparatedByString: @"\n"]
-    objectEnumerator];
-  NSString * line;
-
-  while ((line = [e nextObject]) != nil)
-    {
-      if ([line hasPrefix: @"cpu MHz"]) /* For x86 architecture */
-        {
-           NSArray * comps = [line componentsSeparatedByString: @":"];
-
-           if ([comps count] > 1)
-             {
-               return my_round ([[comps objectAtIndex: 1] floatValue]);
-             }
-        }
-      else if ([line hasPrefix: @"clock"]) /* For ppc and other architectures */
-        {
-           NSArray * comps = [line componentsSeparatedByString: @":"];
-
-          /* Example /proc/cpuinfo on a Mac mini:
-             clock           : 1416.666661MHz */
-
-           if ([comps count] > 1)
-             {
-               NSCharacterSet *letterSet = [NSCharacterSet letterCharacterSet];
-               NSString *cpuSpeed = [comps objectAtIndex: 1];
-
-               cpuSpeed = [cpuSpeed stringByTrimmingCharactersInSet: letterSet];
-
-               return [cpuSpeed intValue];
-             }
-        }
-    }
-
-  return 0;
+  NSString *maxFreq = [NSString stringWithContentsOfFile: @"/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"];
+  return [maxFreq intValue];
 }
 
 + (NSString *) cpuName
